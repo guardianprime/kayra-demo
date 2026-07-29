@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayra Business Ventures Limited — Build Assets, Not Just Income</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#0d3d2e;
+    --forest-dark:#082720;
+    --forest-mid:#12513c;
+    --lime:#b7d92c;
+    --lime-soft:#e8f2c4;
+    --cream:#f7f6ee;
+    --ink:#122019;
+    --ink-soft:#4d5c53;
+    --line: rgba(13,61,46,0.14);
+    --white:#ffffff;
+    --radius: 4px;
+    --chev: polygon(0 0, 78% 0, 100% 50%, 78% 100%, 0 100%, 22% 50%);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora',sans-serif;
+    margin:0;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0; line-height:1.6;}
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
+  ul{margin:0; padding:0; list-style:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- Logo mark ---------- */
+  .logo{display:flex; align-items:center; gap:10px;}
+  .logo-mark{width:34px; height:34px; flex-shrink:0;}
+  .logo-text{font-family:'Sora',sans-serif; font-weight:800; font-size:13.5px; line-height:1.15; letter-spacing:0.02em; color:var(--forest);}
+  .logo-text span{display:block; font-weight:600; font-size:9px; letter-spacing:0.14em; color:var(--ink-soft);}
+  .logo.on-dark .logo-text{color:var(--white);}
+  .logo.on-dark .logo-text span{color:rgba(255,255,255,0.65);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(247,246,238,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1180px; margin:0 auto;}
+  nav ul{display:flex; gap:36px;}
+  nav a{
+    font-size:14.5px; font-weight:600; color:var(--ink);
+    position:relative; padding:4px 0;
+  }
+  nav a.active{color:var(--forest);}
+  nav a.active::after{
+    content:''; position:absolute; left:0; bottom:-3px; width:100%; height:2px; background:var(--lime);
+  }
+  .nav-right{display:flex; align-items:center; gap:22px;}
+  .phone-chip{
+    display:flex; align-items:center; gap:8px;
+    font-size:13.5px; font-weight:600; color:var(--forest);
+  }
+  .phone-chip svg{width:15px; height:15px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px;
+    font-weight:700; font-size:13.5px;
+    border:none; border-radius:var(--radius);
+    clip-path:var(--chev);
+    padding-left:30px; padding-right:34px;
+  }
+  .btn-primary{background:var(--forest); color:var(--white);}
+  .btn-primary:hover{background:var(--forest-dark);}
+  .btn-lime{background:var(--lime); color:var(--forest-dark);}
+  .btn-lime:hover{background:#a5c625;}
+  .btn-ghost{background:transparent; color:var(--forest); border:1.5px solid var(--forest); clip-path:none; border-radius:2px; padding:11px 22px;}
+  .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; padding:6px;}
+  .menu-toggle span{width:22px; height:2px; background:var(--forest);}
+
+  /* ---------- Page sections (SPA-style) ---------- */
+  .page{display:none;}
+  .page.active{display:block; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:11.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--forest);
+    margin-bottom:16px;
+  }
+  .eyebrow::before{content:''; width:18px; height:2px; background:var(--lime);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(160deg, var(--forest) 0%, var(--forest-mid) 46%, #7fa430 100%);
+    color:var(--white);
+    padding:96px 0 0;
+  }
+  .hero-shapes{position:absolute; inset:0; opacity:0.5; pointer-events:none;}
+  .hero-shapes svg{position:absolute; top:0; right:0; height:100%; width:auto;}
+  .hero-inner{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:end;
+  }
+  .hero-copy{padding-bottom:80px;}
+  .hero .eyebrow{color:var(--lime);}
+  .hero .eyebrow::before{background:var(--lime);}
+  .hero h1{
+    font-size:clamp(40px, 5.4vw, 68px);
+    font-weight:800;
+    color:var(--white);
+  }
+  .hero h1 em{font-style:normal; color:var(--lime);}
+  .hero-sub{
+    margin-top:22px; max-width:460px;
+    font-size:16.5px; color:rgba(255,255,255,0.82);
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .hero-actions .btn-ghost{border-color:rgba(255,255,255,0.5); color:var(--white);}
+  .hero-tagline-bar{
+    display:inline-flex; margin-top:44px; padding:14px 22px;
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+    border-radius:40px; font-weight:600; font-size:14px; color:var(--white);
+  }
+  .hero-visual{
+    position:relative; align-self:end;
+    border-radius:6px 6px 0 0; overflow:hidden;
+    height:440px;
+  }
+  .hero-visual img{width:100%; height:100%; object-fit:cover;}
+  .hero-visual::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(8,39,32,0.55), transparent 45%);
+  }
+  .hero-stats{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid rgba(255,255,255,0.18);
+    margin-top:56px;
+  }
+  .hero-stats div{padding:26px 0; border-right:1px solid rgba(255,255,255,0.18);}
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats strong{display:block; font-family:'Sora',sans-serif; font-size:28px; font-weight:800; color:var(--lime);}
+  .hero-stats span{font-size:12.5px; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* ---------- Generic section ---------- */
+  section{padding:96px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:52px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px); font-weight:800; max-width:560px;}
+  .section-head p{max-width:380px; color:var(--ink-soft); font-size:15px;}
+
+  /* value props */
+  .value-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line);}
+  .value-card{background:var(--white); padding:38px 32px;}
+  .value-card .num{font-family:'Sora',sans-serif; font-weight:800; font-size:13px; color:var(--lime-soft); background:var(--forest); display:inline-block; padding:5px 10px; border-radius:2px; margin-bottom:22px;}
+  .value-card h3{font-size:19px; font-weight:700; margin-bottom:12px;}
+  .value-card p{color:var(--ink-soft); font-size:14.5px;}
+
+  /* featured projects */
+  .card-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .proj-card{
+    background:var(--white); border:1px solid var(--line); border-radius:6px; overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .proj-card:hover{transform:translateY(-5px); box-shadow:0 18px 34px rgba(13,61,46,0.14);}
+  .proj-thumb{position:relative; height:210px; overflow:hidden;}
+  .proj-thumb img{width:100%; height:100%; object-fit:cover;}
+  .proj-badge{
+    position:absolute; top:14px; left:14px;
+    background:var(--lime); color:var(--forest-dark);
+    font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;
+    padding:6px 12px; border-radius:2px;
+  }
+  .proj-badge.status-2{background:var(--forest); color:var(--lime-soft);}
+  .proj-body{padding:24px; flex:1; display:flex; flex-direction:column; gap:10px;}
+  .proj-loc{font-size:12.5px; color:var(--ink-soft); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+  .proj-body h3{font-size:19px; font-weight:700;}
+  .proj-meta{display:flex; gap:16px; font-size:13px; color:var(--ink-soft); padding-top:8px; border-top:1px solid var(--line); margin-top:4px;}
+  .proj-price{margin-top:auto; padding-top:12px; font-family:'Sora',sans-serif; font-weight:800; color:var(--forest); font-size:17px;}
+
+  /* CTA band */
+  .cta-band{
+    background:var(--forest); color:var(--white);
+    padding:70px 0; position:relative; overflow:hidden;
+  }
+  .cta-band .wrap{display:flex; justify-content:space-between; align-items:center; gap:30px; flex-wrap:wrap; position:relative; z-index:2;}
+  .cta-band h2{font-size:clamp(26px,3.2vw,36px); font-weight:800; max-width:520px;}
+  .cta-band h2 em{font-style:normal; color:var(--lime);}
+
+  /* footer */
+  footer{background:var(--forest-dark); color:rgba(255,255,255,0.75); padding:64px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,0.12);}
+  .footer-grid h4{color:var(--white); font-size:13px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:18px; font-weight:700;}
+  .footer-grid li{margin-bottom:11px; font-size:14px;}
+  .footer-grid a:hover{color:var(--lime);}
+  .footer-about p{font-size:14px; margin-top:14px; max-width:280px; color:rgba(255,255,255,0.6);}
+  .footer-bottom{display:flex; justify-content:space-between; padding-top:24px; font-size:12.5px; color:rgba(255,255,255,0.45); flex-wrap:wrap; gap:10px;}
+
+  /* ---------- Projects page ---------- */
+  .page-hero{
+    background:var(--forest); color:var(--white); padding:64px 0 54px; position:relative; overflow:hidden;
+  }
+  .page-hero .wrap{position:relative; z-index:2;}
+  .page-hero h1{font-size:clamp(32px,4vw,46px); font-weight:800;}
+  .page-hero p{margin-top:14px; max-width:480px; color:rgba(255,255,255,0.78);}
+
+  .filter-bar{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:44px;}
+  .filter-pill{
+    padding:10px 20px; border-radius:30px; border:1.5px solid var(--line);
+    font-size:13.5px; font-weight:600; color:var(--ink-soft); background:var(--white);
+  }
+  .filter-pill.active{background:var(--forest); border-color:var(--forest); color:var(--white);}
+
+  .full-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+
+  .note-card{
+    grid-column:1 / -1; display:flex; align-items:center; gap:16px;
+    background:var(--lime-soft); border:1px solid #d8e6a4; padding:18px 22px; border-radius:6px;
+    font-size:13.5px; color:var(--forest-dark);
+  }
+  .note-card svg{width:20px; height:20px; flex-shrink:0;}
+
+  /* ---------- Contact page ---------- */
+  .contact-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; border:1px solid var(--line); border-radius:6px; overflow:hidden;}
+  .contact-info{background:var(--forest); color:var(--white); padding:52px 44px;}
+  .contact-info h2{font-size:28px; font-weight:800; margin-bottom:14px;}
+  .contact-info > p{color:rgba(255,255,255,0.75); font-size:14.5px; margin-bottom:36px;}
+  .contact-item{display:flex; gap:14px; margin-bottom:26px;}
+  .contact-item .ic{
+    width:38px; height:38px; border-radius:4px; background:rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .contact-item .ic svg{width:17px; height:17px;}
+  .contact-item h4{font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.55); margin-bottom:5px; font-weight:700;}
+  .contact-item p{font-size:15px; font-weight:600;}
+  .contact-form{padding:52px 44px; background:var(--white);}
+  .contact-form h3{font-size:20px; font-weight:700; margin-bottom:26px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:7px; text-transform:uppercase; letter-spacing:0.04em;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:13px 14px; border:1.5px solid var(--line); border-radius:4px;
+    font-family:'Inter',sans-serif; font-size:14.5px; color:var(--ink); background:var(--cream);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:2px solid var(--forest); outline-offset:1px; background:var(--white);}
+  .field textarea{resize:vertical; min-height:100px;}
+  .form-note{font-size:12.5px; color:var(--ink-soft); margin-top:14px;}
+  .form-success{
+    display:none; margin-top:18px; padding:14px 16px; background:var(--lime-soft); color:var(--forest-dark);
+    border-radius:4px; font-size:13.5px; font-weight:600; align-items:center; gap:10px;
+  }
+  .form-success.show{display:flex;}
+
+  .map-band{height:280px; background:var(--forest-mid); position:relative; overflow:hidden;}
+  .map-band img{width:100%; height:100%; object-fit:cover; opacity:0.55;}
+  .map-pin{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-100%);
+    display:flex; flex-direction:column; align-items:center; color:var(--white);
+  }
+  .map-pin svg{width:34px; height:34px;}
+  .map-pin span{background:var(--forest-dark); padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700; margin-top:6px;}
+
+  .faq-list{max-width:760px; margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
+  .faq-item h4{font-size:16px; font-weight:700; margin-bottom:8px;}
+  .faq-item p{font-size:14.5px; color:var(--ink-soft);}
+
+  /* responsive */
+  @media(max-width:920px){
+    nav{display:none;}
+    .menu-toggle{display:flex;}
+    .hero-inner{grid-template-columns:1fr;}
+    .hero-visual{height:280px;}
+    .hero-stats{grid-template-columns:repeat(2,1fr);}
+    .value-grid, .card-grid, .full-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .phone-chip{display:none;}
+  }
+  @media(max-width:520px){
+    .wrap{padding:0 20px;}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero{padding-top:76px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="header-inner">
+    <a href="#home" class="logo" onclick="goPage('home')">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <polygon points="4,4 20,4 8,20 20,36 4,36 16,20" fill="#0d3d2e"/>
+        <polygon points="20,4 32,4 20,20 32,36 20,36 32,20" fill="#b7d92c"/>
+      </svg>
+      <div class="logo-text">KAYRA BUSINESS<br>VENTURES<span>LIMITED</span></div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#home" class="nav-link active" data-page="home" onclick="goPage('home')">Home</a></li>
+        <li><a href="#projects" class="nav-link" data-page="projects" onclick="goPage('projects')">Projects</a></li>
+        <li><a href="#contact" class="nav-link" data-page="contact" onclick="goPage('contact')">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <div class="phone-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0707 113 2173
+      </div>
+      <a class="btn btn-primary" href="#contact" onclick="goPage('contact')">Talk to Us</a>
+      <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('mobile-open')" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HOME PAGE ===================== -->
+<main id="home" class="page active">
+
+  <section class="hero" style="padding-top:0; padding-bottom:0;">
+    <div class="hero-shapes">
+      <svg width="600" height="700" viewBox="0 0 600 700" fill="none">
+        <polygon points="600,0 600,700 380,700 520,350 380,0" fill="rgba(255,255,255,0.05)"/>
+        <polygon points="600,120 600,580 470,580 555,350 470,120" fill="rgba(183,217,44,0.12)"/>
+      </svg>
+    </div>
+    <div class="wrap" style="padding-top:64px;">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">Real Estate &amp; Property Investment · Lagos, Nigeria</div>
+          <h1>Don't just work.<br><em>Build assets.</em></h1>
+          <p class="hero-sub">Kayra Business Ventures helps everyday earners turn income into land, homes and long‑term equity — with verified titles, flexible plans and projects you can actually visit.</p>
+          <div class="hero-actions">
+            <a class="btn btn-lime" href="#projects" onclick="goPage('projects')">View Projects</a>
+            <a class="btn btn-ghost" href="#contact" onclick="goPage('contact')">Talk to an Advisor</a>
+          </div>
+          <div class="hero-tagline-bar">"New Week, New Investment Mindset."</div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Modern residential development">
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div><strong>150+</strong><span>Clients Onboarded</span></div>
+        <div><strong>6</strong><span>Active Projects</span></div>
+        <div><strong>100%</strong><span>Verified Titles</span></div>
+        <div><strong>12</strong><span>Months, Flexible Plans</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why investors choose to build with Kayra.</h2>
+        <p>We handle the paperwork, the site inspections and the follow‑up, so your money goes into an asset — not a headache.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="num">01</div>
+          <h3>Verified, Documented Land</h3>
+          <p>Every plot and property we sell is checked and documented before it's listed, so you're not buying into a dispute.</p>
+        </div>
+        <div class="value-card">
+          <div class="num">02</div>
+          <h3>Flexible Payment Plans</h3>
+          <p>Spread payments over months instead of paying one lump sum, with a clear schedule agreed upfront.</p>
+        </div>
+        <div class="value-card">
+          <div class="num">03</div>
+          <h3>Personal Investment Advisory</h3>
+          <p>A dedicated advisor walks you through options that match your budget and goals — not just the most expensive listing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Featured projects.</h2>
+        <p>A look at what's currently open for investment.</p>
+      </div>
+      <div class="card-grid">
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge">Selling Fast</span>
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Residential estate plots">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Ibeju‑Lekki, Lagos</span>
+            <h3>Kayra Gardens Estate</h3>
+            <div class="proj-meta"><span>Residential Land</span><span>·</span><span>300–600 sqm plots</span></div>
+            <div class="proj-price">From ₦4,500,000</div>
+          </div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge status-2">Under Construction</span>
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=700&q=80" alt="Terrace duplex development">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Sangotedo, Lagos</span>
+            <h3>Kayra Court Terraces</h3>
+            <div class="proj-meta"><span>3‑Bed Terrace</span><span>·</span><span>Off‑plan</span></div>
+            <div class="proj-price">From ₦55,000,000</div>
+          </div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge">New Launch</span>
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="Commercial plots">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Epe, Lagos</span>
+            <h3>Kayra Business Park</h3>
+            <div class="proj-meta"><span>Commercial Land</span><span>·</span><span>500 sqm+</span></div>
+            <div class="proj-price">From ₦8,000,000</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:44px;">
+        <a class="btn btn-primary" href="#projects" onclick="goPage('projects')">See All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Ready to move from <em>income</em> to <em>assets</em>?</h2>
+      <a class="btn btn-lime" href="#contact" onclick="goPage('contact')">Book a Free Consultation</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== PROJECTS PAGE ===================== -->
+<main id="projects" class="page">
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="hero-shapes">
+      <svg width="500" height="400" viewBox="0 0 500 400" fill="none" style="right:-40px; top:-40px;">
+        <polygon points="500,0 500,400 320,400 460,180 320,0" fill="rgba(183,217,44,0.14)"/>
+      </svg>
+    </div>
+    <div class="wrap">
+      <div class="eyebrow">Our Projects</div>
+      <h1>Land, homes and developments<br>ready for investment.</h1>
+      <p>Every project below is at a different stage — from open plots to move‑in‑ready homes. Prices shown are demo placeholders for this preview site.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="filter-bar">
+        <span class="filter-pill active">All Projects</span>
+        <span class="filter-pill">Residential Land</span>
+        <span class="filter-pill">Terraces &amp; Duplexes</span>
+        <span class="filter-pill">Commercial</span>
+        <span class="filter-pill">Under Construction</span>
+      </div>
+
+      <div class="full-grid">
+        <div class="note-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0d3d2e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          This is a design preview — project names, images and prices are placeholders to show layout and flow. Real listings will replace these once approved.
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge">Selling Fast</span>
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Residential estate plots">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Ibeju‑Lekki, Lagos</span>
+            <h3>Kayra Gardens Estate</h3>
+            <div class="proj-meta"><span>Residential Land</span><span>·</span><span>300–600 sqm</span></div>
+            <div class="proj-price">From ₦4,500,000</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge status-2">Under Construction</span>
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=700&q=80" alt="Terrace duplex development">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Sangotedo, Lagos</span>
+            <h3>Kayra Court Terraces</h3>
+            <div class="proj-meta"><span>3‑Bed Terrace</span><span>·</span><span>Off‑plan</span></div>
+            <div class="proj-price">From ₦55,000,000</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge">New Launch</span>
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="Commercial plots">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Epe, Lagos</span>
+            <h3>Kayra Business Park</h3>
+            <div class="proj-meta"><span>Commercial Land</span><span>·</span><span>500 sqm+</span></div>
+            <div class="proj-price">From ₦8,000,000</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge status-2">Ready to Move In</span>
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt="Detached duplex">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Ajah, Lagos</span>
+            <h3>Kayra Heights</h3>
+            <div class="proj-meta"><span>4‑Bed Detached</span><span>·</span><span>Fenced &amp; Gated</span></div>
+            <div class="proj-price">₦120,000,000</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge">Selling Fast</span>
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=700&q=80" alt="Waterfront land">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Abijo, Lagos</span>
+            <h3>Kayra Waterview Plots</h3>
+            <div class="proj-meta"><span>Residential Land</span><span>·</span><span>450 sqm</span></div>
+            <div class="proj-price">From ₦6,200,000</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <span class="proj-badge status-2">Under Construction</span>
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=700&q=80" alt="Apartment block">
+          </div>
+          <div class="proj-body">
+            <span class="proj-loc">Awoyaya, Lagos</span>
+            <h3>Kayra Residences</h3>
+            <div class="proj-meta"><span>2‑Bed Apartments</span><span>·</span><span>Off‑plan</span></div>
+            <div class="proj-price">From ₦38,000,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Found a project you like? <em>Let's talk numbers.</em></h2>
+      <a class="btn btn-lime" href="#contact" onclick="goPage('contact')">Get Pricing &amp; Payment Plan</a>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== CONTACT PAGE ===================== -->
+<main id="contact" class="page">
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="eyebrow">Get In Touch</div>
+      <h1>Let's talk about<br>your next investment.</h1>
+      <p>Call, email or send an inquiry — our advisory team responds within one business day.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Kayra Business Ventures Limited</h2>
+          <p>Reach out for site inspections, payment plans or a one‑on‑one investment consultation.</p>
+
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#b7d92c" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><h4>Call Us</h4><p>0707 113 2173 · 0916 130 9119</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#b7d92c" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+            <div><h4>Email</h4><p>kayrabusinesssltd@gmail.com</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#b7d92c" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <div><h4>Office</h4><p>Lagos, Nigeria</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#b7d92c" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div><h4>Hours</h4><p>Mon – Sat, 9am – 6pm</p></div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Send an inquiry</h3>
+          <form id="inquiryForm" onsubmit="return handleSubmit(event)">
+            <div class="form-row">
+              <div class="field"><label>First Name</label><input type="text" required placeholder="Ada"></div>
+              <div class="field"><label>Last Name</label><input type="text" required placeholder="Okafor"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Phone Number</label><input type="tel" required placeholder="080X XXX XXXX"></div>
+              <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
+            </div>
+            <div class="field">
+              <label>I'm interested in</label>
+              <select>
+                <option>Residential Land</option>
+                <option>Terrace / Duplex</option>
+                <option>Commercial Land</option>
+                <option>General Inquiry</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Message</label>
+              <textarea placeholder="Tell us your budget range and preferred location..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Inquiry</button>
+            <div class="form-success" id="formSuccess">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d3d2e" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              Thanks — this is a demo form, so nothing was sent, but this is what a confirmation looks like.
+            </div>
+            <p class="form-note">By submitting, you agree to be contacted by Kayra Business Ventures regarding your inquiry.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="map-band">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=60" alt="Lagos city map area">
+    <div class="map-pin">
+      <svg viewBox="0 0 24 24" fill="#b7d92c" stroke="#0d3d2e" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#0d3d2e"/></svg>
+      <span>Lagos, Nigeria</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head" style="justify-content:center; text-align:center; flex-direction:column; align-items:center;">
+        <h2>Frequently asked questions.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>Are your land titles verified?</h4>
+          <p>Yes — every property is documented and checked before it's listed for sale, and title documents are made available to buyers.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I pay in installments?</h4>
+          <p>Most projects offer flexible payment plans spread across several months. Your advisor will confirm the schedule for your chosen project.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I visit a project before buying?</h4>
+          <p>Absolutely. We arrange site inspections so you can see the location and progress in person before committing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="logo on-dark">
+          <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+            <polygon points="4,4 20,4 8,20 20,36 4,36 16,20" fill="#ffffff"/>
+            <polygon points="20,4 32,4 20,20 32,36 20,36 32,20" fill="#b7d92c"/>
+          </svg>
+          <div class="logo-text">KAYRA BUSINESS<br>VENTURES<span>LIMITED</span></div>
+        </div>
+        <p>Helping Lagos earners turn income into land, homes and long‑term assets — one investment at a time.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#home" onclick="goPage('home')">Home</a></li>
+          <li><a href="#projects" onclick="goPage('projects')">Projects</a></li>
+          <li><a href="#contact" onclick="goPage('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projects</h4>
+        <ul>
+          <li><a href="#projects" onclick="goPage('projects')">Residential Land</a></li>
+          <li><a href="#projects" onclick="goPage('projects')">Terraces &amp; Duplexes</a></li>
+          <li><a href="#projects" onclick="goPage('projects')">Commercial</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>0707 113 2173</li>
+          <li>0916 130 9119</li>
+          <li>kayrabusinesssltd@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Kayra Business Ventures Limited. Demo site for design review.</span>
+      <span>Don't Just Work. Build Assets.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function goPage(id){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.nav-link[data-page="'+id+'"]').forEach(a => a.classList.add('active'));
+    document.querySelector('nav').classList.remove('mobile-open');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  // support direct hash links on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#','');
+    if(['home','projects','contact'].includes(hash)) goPage(hash);
+  });
+  function handleSubmit(e){
+    e.preventDefault();
+    document.getElementById('formSuccess').classList.add('show');
+    return false;
+  }
+</script>
+
+</body>
+</html>
